@@ -15,7 +15,7 @@ def extract_build_id(html:str) -> Optional[str]:
     m2 = re.search(r'"buildId"\s*:\s*"([^"]+)"', html)
     return m2.group(1) if m2 else None
 
-def parse_menu(html:str, base_url:str)->List[Dict:str]:
+def parse_menu(html:str, base_url:str)->List[Dict[str, str]]:
     soup=soupify(html)
     items=[]
     navs=[]
