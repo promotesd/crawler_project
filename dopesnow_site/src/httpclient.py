@@ -3,7 +3,7 @@ import requests
 from tenacity import retry, stop_after_attempt, wait_exponential, retry_if_exception_type
 from urllib.parse import urlparse
 from urllib import robotparser
-from .config import Settings
+from config import Settings
 
 
 class RateLimiter:
@@ -57,15 +57,14 @@ class HttpClient:
            )
     
     def get(self, url:str) ->requests.Response:
-        if not self.same_domain(url):
-            raise requests.RequestException(f"Blocked cross-domain: {url}")
+        # if not self.same_domain(url):
+        #     raise requests.RequestException(f"Blocked cross-domain: {url}")
         
-        if not self.robots.allowed(url):
-            raise requests.RequestException(f"Disallowed by robots.txt: {url}")
+        # if not self.robots.allowed(url):
+        #     raise requests.RequestException(f"Disallowed by robots.txt: {url}")
         
         self.ratelimiter.wait()
         request = self.session.get(url, timeout=self.timeout)
         request.raise_for_status()
         return request
-    
-    
+
