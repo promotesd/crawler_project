@@ -37,7 +37,7 @@ def main(argv=None):
         # 输出路径
         out_path = args.out
         if not out_path:
-            out_path = "data/site_dump.json" if args.format == "json" else "data/site_dump.csv"
+            out_path = "data/dopesnow_site_product.json" if args.format == "json" else "data/dopesnow_site_product.csv"
 
         # 单文件写出
         if args.format == "json":
