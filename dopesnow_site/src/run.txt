@@ -1,1 +1,1 @@
-python src/cli.py crawl --format json --pages 1500 --delay 1.0
+python src/cli.py crawl --format json --pages 2000 --delay 0.1

@@ -5,7 +5,7 @@ import xml.etree.ElementTree as ET
 import requests
 from tqdm import tqdm
 
-from http import HttpClient
+from httpclient import HttpClient
 from parse import (
     discover_product_links_from_html,
     parse_product_page,
