@@ -29,6 +29,25 @@ CATEGORY_CANON = {
     "sale":         ["sale", "discount"],
 }
 
+def parse_menu(html:str, base_url:str)->List[Dict[str, str]]:
+    soup=soupify(html)
+    items=[]
+    navs=[]
+    for sel in ["header", "footer", "nav"]:
+        navs.extend(soup.select(sel+" a[herf]"))
+    seen=set()
+    for a in navs:
+        href = a.get("href", "").strip()
+        txt = textnorm(a.get_text(" ", strip=True))
+        if not href or len(txt) < 1 or href.startswith("#"):
+            continue
+        key = (txt, href)
+        if key in seen:
+            continue
+        seen.add(key)
+        items.append({"text": txt, "href": href})
+    return items
+
 def soupify(html: str) -> BeautifulSoup:
     return BeautifulSoup(html, "lxml")
 
